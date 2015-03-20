@@ -1,7 +1,8 @@
 /* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
 
 /* Tomorrow Comment */
-.hljs-comment {
+.hljs-comment,
+.hljs-title {
   color: #8e908c;
 }
 
@@ -49,7 +50,6 @@
 }
 
 /* Tomorrow Aqua */
-.hljs-title,
 .css .hljs-hexcolor {
   color: #3e999f;
 }
@@ -74,11 +74,7 @@
 
 .hljs {
   display: block;
-  overflow-x: auto;
-  background: white;
   color: #4d4d4c;
-  padding: 0.5em;
-  -webkit-text-size-adjust: none;
 }
 
 .coffeescript .javascript,
