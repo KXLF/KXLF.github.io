@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>KXLF</title>
+    <title>DOM第2级事件模型 | KXLF</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="上课的路上&amp;nbsp;&amp;nbsp;撑一把伞&lt;br /&gt;踏着被雨水淋湿的黄叶&lt;br /&gt;感受着入冬的雨雪">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="KXLF">
+    <meta name="twitter:title" content="DOM第2级事件模型 | KXLF">
     <meta name="twitter:description" content="上课的路上&amp;nbsp;&amp;nbsp;撑一把伞&lt;br /&gt;踏着被雨水淋湿的黄叶&lt;br /&gt;感受着入冬的雨雪"">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="KXLF">
+    <meta property="og:title" content="DOM第2级事件模型 | KXLF">
     <meta property="og:description" content="上课的路上&amp;nbsp;&amp;nbsp;撑一把伞&lt;br /&gt;踏着被雨水淋湿的黄叶&lt;br /&gt;感受着入冬的雨雪"">
 
   
@@ -43,7 +43,7 @@
     <link rel="alternate" type="application/rss+xml" title="KXLF" href="/atom.xml">
     
     
-    <link rel="canonical" href="http://kxlf.co" />
+    <link rel="canonical" href="http://kxlf.co/2015/03/22/DOM第2级事件模型/" />
 
     
 </head>
@@ -146,113 +146,73 @@
 
     <div class="content-wrapper">
         <div class="content-wrapper__inner">
-            <div class="main-post-list">
-    
-  <ol class="post-list">
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2015/03/22/jQuery事件模型/" title="link to post.title">jQuery事件模型</a></h2>
-      <p class="excerpt">
-    
-      创建监听器
-示例$(&amp;#39;img&amp;#39;).bind(&amp;#39;click&amp;#39;, function(event){ alert(&amp;#39;Hi there! ;&amp;#39;); });
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2015-03-22T12:13:46.000Z" class="post-list__meta--date date">2015-03-22</time> &#8226; <span class="post-meta__tags tags">于&nbsp;</span>
+      <!--<span class="post-meta__author author"><img src="{{author.image}}" alt="profile image for {{author.name}}" class="avatar post-meta__avatar" /> by {{author.name}}</span>-->
+    </div>
+    <h1 class="post-title">DOM第2级事件模型</h1>
+  </header>
+
+  <section class="post">
+    <h2 id="创建监听器">创建监听器</h2><ul>
+<li>调用元素上的addEventListener()方法。</li>
+<li>语法：addEventListener(eventType, listener, userCapture);</li>
+<li><p>参数eventType：要监听的事件类型。</p>
+<blockquote>
+<p>与DOM第0级事件模型中<strong>不带on前缀</strong>的事件名称相同，例如click、mouseover、keydown等。</p>
+</blockquote>
+</li>
+<li><p>参数listener：函数引用或内联函数，Event实例是传入这个函数的第一个参数。</p>
+<blockquote>
+<p>在一个元素上创建的多个处理器，可能会以随机顺序触发，标准并不保证事件的执行顺序。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="事件传播">事件传播</h2><ul>
+<li>捕获阶段：事件首先从DOM树根部向下传播到目标元素。</li>
+<li>冒泡阶段：从目标元素向上传播到DOM树根部。</li>
+<li>将addEventListener方法中的useCapture设置为true，则建立捕获阶段监听器，反之创建冒泡阶段监听器。<blockquote>
+<p>捕获阶段中Event实例的target属性也始终指向引发事件的目标元素。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="IE事件模型">IE事件模型</h2><ul>
+<li>IE不支持DOM第2级事件模型（IE8-）</li>
+<li>调用元素上的attchEvent()方法。</li>
+<li>语法：attchEvent(eventName, handler);</li>
+<li>eventName：要监听的事件类型。<blockquote>
+<p>不采用标准事件名称，而是采用DOM第0级事件中相应元素属性的名称，例如onclick、mouseover、onkeydown等。</p>
+</blockquote>
+</li>
+<li>handler：事件处理函数，Event实例必须通过window.event属性获取。</li>
+</ul>
+
+  </section>
+
+</article>
 
 
-语法：
-bind( eventType, data, hanlder )
-参数eventType
-标准事件名称，例如click、mouseover、keydown等。
-可以使用空格分隔的列表指定多个事件类型。
-可以在事件名称后添加圆点字符后缀来添加命名空间。
-
-
-参数data
-调用者提供的数据，给处
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2015-03-22T12:44:39.000Z" class="post-list__meta--date date">2015-03-22</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2015/03/22/jQuery事件模型/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2015/03/22/DOM第2级事件模型/" title="link to post.title">DOM第2级事件模型</a></h2>
-      <p class="excerpt">
-    
-      创建监听器
-调用元素上的addEventListener()方法。
-语法：addEventListener(eventType, listener, userCapture);
-参数eventType：要监听的事件类型。
-
-与DOM第0级事件模型中不带on前缀的事件名称相同，例如click、mouseover、keydown等。
-
-
-参数listener：函数引用或内联函数，Event实例是传入这个函数的第一个参数。
-
-在一个元素上创建的多个处理器，可能会以随机顺序触发，标准并不保证事件的执行顺
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2015-03-22T12:13:46.000Z" class="post-list__meta--date date">2015-03-22</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2015/03/22/DOM第2级事件模型/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2015/03/22/DOM第0级事件模型/" title="link to post.title">DOM第0级事件模型</a></h2>
-      <p class="excerpt">
-    
-      DOM第0级规范是在DOM Level 1提出之前的各浏览器厂商已经比较通用的规范。它还有以下几个其他的名字：
-
-
-网景事件模型：Netscape Event Model
-基本事件模型：Basic Event Model
-浏览器事件模型：Browser Event Model
-DOM 第0级事件模型：DOM Level 0 Event Model
-
-
-如何使用将一个函数实例的引用赋值给DOM元素的属性。
-
-在标记特性中声明&amp;lt;input type=&amp;quot;text&amp;quot; click
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2015-03-22T11:36:13.000Z" class="post-list__meta--date date">2015-03-22</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2015/03/22/DOM第0级事件模型/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2015/03/16/test1/" title="link to post.title">发个文章测试一下</a></h2>
-      <p class="excerpt">
-    
-      锋后冷空气移动速度远较暖气团为快，它冲击暖气团并迫使产生强烈上升。而在高层，因暖气团移速大于冷空气，出现暖空气沿锋面下滑现象，由于这种锋面处于高空槽后或槽线附近，更加强了锋线附近的上升运动和高空锋区上的下沉运动。
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2015-03-16T12:13:06.000Z" class="post-list__meta--date date">2015-03-16</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/TEST/">TEST</a>
-</span><a class="btn-border-small" href="/2015/03/16/test1/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2015/03/16/hello-world/" title="link to post.title">Hello World</a></h2>
-      <p class="excerpt">
-    
-      Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post$ hexo new &amp;quot;My New Pos
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2015-03-16T08:28:25.799Z" class="post-list__meta--date date">2015-03-16</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2015/03/16/hello-world/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-  </ol>
-
-
-
-</div>
+<section class="post-comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="http://kxlf.co/2015/03/22/DOM第2级事件模型/" data-title="DOM第2级事件模型" data-url="http://kxlf.co/2015/03/22/DOM第2级事件模型/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"mlongbo"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+</section>
 
 
 
