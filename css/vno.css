@@ -162,7 +162,7 @@ code {
 
 pre {
   margin-bottom: 1.3em;
-  padding: 1em 2.5%;
+  padding:10px 10px;  /* 1em 2.5%; KXLF:修改代码块外框 */
   background: #e8f2fb;
   border: 1px solid #c9e1f6;
   color: #e05b44;

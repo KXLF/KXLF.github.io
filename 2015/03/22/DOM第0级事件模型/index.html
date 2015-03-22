@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>KXLF</title>
+    <title>DOM第0级事件模型 | KXLF</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="上课的路上&amp;nbsp;&amp;nbsp;撑一把伞&lt;br /&gt;踏着被雨水淋湿的黄叶&lt;br /&gt;感受着入冬的雨雪">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="KXLF">
+    <meta name="twitter:title" content="DOM第0级事件模型 | KXLF">
     <meta name="twitter:description" content="上课的路上&amp;nbsp;&amp;nbsp;撑一把伞&lt;br /&gt;踏着被雨水淋湿的黄叶&lt;br /&gt;感受着入冬的雨雪"">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="KXLF">
+    <meta property="og:title" content="DOM第0级事件模型 | KXLF">
     <meta property="og:description" content="上课的路上&amp;nbsp;&amp;nbsp;撑一把伞&lt;br /&gt;踏着被雨水淋湿的黄叶&lt;br /&gt;感受着入冬的雨雪"">
 
   
@@ -43,7 +43,7 @@
     <link rel="alternate" type="application/rss+xml" title="KXLF" href="/atom.xml">
     
     
-    <link rel="canonical" href="http://kxlf.co" />
+    <link rel="canonical" href="http://kxlf.co/2015/03/22/DOM第0级事件模型/" />
 
     
 </head>
@@ -146,66 +146,113 @@
 
     <div class="content-wrapper">
         <div class="content-wrapper__inner">
-            <div class="main-post-list">
-    
-  <ol class="post-list">
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2015/03/22/DOM第0级事件模型/" title="link to post.title">DOM第0级事件模型</a></h2>
-      <p class="excerpt">
-    
-      DOM第0级规范是在DOM Level 1提出之前的各浏览器厂商已经比较通用的规范。它还有以下几个其他的名字：
+            <article class="post-container post-container--single">
+
+  <header class="post-header">
+    <div class="post-meta">
+      <time datetime="2015-03-22T11:36:13.000Z" class="post-list__meta--date date">2015-03-22</time> &#8226; <span class="post-meta__tags tags">于&nbsp;</span>
+      <!--<span class="post-meta__author author"><img src="{{author.image}}" alt="profile image for {{author.name}}" class="avatar post-meta__avatar" /> by {{author.name}}</span>-->
+    </div>
+    <h1 class="post-title">DOM第0级事件模型</h1>
+  </header>
+
+  <section class="post">
+    <p>DOM第0级规范是在DOM Level 1提出之前的各浏览器厂商已经比较通用的规范。<br>它还有以下几个其他的名字：</p>
+<blockquote>
+<ul>
+<li>网景事件模型：Netscape Event Model</li>
+<li>基本事件模型：Basic Event Model</li>
+<li>浏览器事件模型：Browser Event Model</li>
+<li>DOM 第0级事件模型：DOM Level 0 Event Model</li>
+</ul>
+</blockquote>
+<h2 id="如何使用">如何使用</h2><p>将一个函数实例的引用赋值给DOM元素的属性。</p>
+<ul>
+<li>在标记特性中声明<pre><code class="html">&lt;input type=&quot;text&quot; click=&quot;showIt(&#39;duang!&#39;);&quot;&gt;
+</code></pre>
+</li>
+<li>将事件处理函数的主体作为特性值嵌入到DOM元素的HTML标记中<pre><code class="html">&lt;input type=&quot;text&quot; click=&quot;alert(&#39;duang! duang! duang!&#39;); return false;&quot;&gt;
+</code></pre>
+</li>
+<li>用脚本控制声明<pre><code class="javascript">$(&quot;#test1&quot;).onclick = function(event){
+  showIt(&quot;duang! duang!&quot;);
+}
+</code></pre>
+</li>
+</ul>
+<h2 id="缺点">缺点</h2><ul>
+<li>某个元素上的某种事件类型只能注册一个事件。<blockquote>
+<p>当然可以通过包装多个函数、实现观察者模式、闭包技巧等方法来实现，但会增加复杂度。</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="Event实例">Event实例</h2><ul>
+<li>获取Event实例<ul>
+<li>标准浏览器：将Event实例作为第一个参数传入处理器。</li>
+<li>IE浏览器：将Event实例保存到event全局变量中。（也就是window的一个属性）</li>
+<li>兼容处理：<pre><code class="javascript">if ( !event ) event = window.event；
+</code></pre>
+</li>
+</ul>
+</li>
+<li>获取触发事件的元素<ul>
+<li>标准浏览器：target属性</li>
+<li>IE浏览器：srcElement属性</li>
+<li>兼容处理：<pre><code class="javascript">var target = ( event.target ) ? event.target : event.srcElement;
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="事件冒泡">事件冒泡</h2><ul>
+<li>描述：当触发一个DOM树元素的事件时，浏览器会检查这个元素是否创建了特定事件处理器，如果是，则触发，然后继续检查和触发父元素的特定事件，以此类推，直到DOM顶部。</li>
+<li>利用：它允许我们在任何层级的元素上创建处理器，以便处理发生在后代元素上的事件。<blockquote>
+<p>冒泡中的target一直是目标元素不变，而不是current元素的父元素。也就是说，冒泡过程中，每一级的事件都是由目标元素触发。</p>
+</blockquote>
+</li>
+<li><p>阻止冒泡：</p>
+<ul>
+<li>标准浏览器：调用Event实例的stopPropagation()</li>
+<li>IE浏览器：设置Event实例的cancelBubble = true</li>
+<li>注：很多现代浏览器也支持cancelBubble，虽然它不是标准的一部分。</li>
+</ul>
+</li>
+<li><p>取消默认语义动作执行</p>
+<ul>
+<li>例如：取消a标签重定向到href、form提交事件导致表单提交。</li>
+<li>方法：将事件处理器返回值设为false。</li>
+<li>利用：<ul>
+<li>在表单提交事件处理器中，验证数据，数据有问题就返回false</li>
+<li>直接设置onsubmit=”return false;”，而使用ajax异步提交数据。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  </section>
+
+</article>
 
 
-网景事件模型：Netscape Event Model
-基本事件模型：Basic Event Model
-浏览器事件模型：Browser Event Model
-DOM 第0级事件模型：DOM Level 0 Event Model
-
-
-如何使用将一个函数实例的引用赋值给DOM元素的属性。
-
-在标记特性中声明&amp;lt;input type=&amp;quot;text&amp;quot; click
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2015-03-22T11:36:13.000Z" class="post-list__meta--date date">2015-03-22</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2015/03/22/DOM第0级事件模型/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2015/03/16/test1/" title="link to post.title">发个文章测试一下</a></h2>
-      <p class="excerpt">
-    
-      锋后冷空气移动速度远较暖气团为快，它冲击暖气团并迫使产生强烈上升。而在高层，因暖气团移速大于冷空气，出现暖空气沿锋面下滑现象，由于这种锋面处于高空槽后或槽线附近，更加强了锋线附近的上升运动和高空锋区上的下沉运动。
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2015-03-16T12:13:06.000Z" class="post-list__meta--date date">2015-03-16</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/TEST/">TEST</a>
-</span><a class="btn-border-small" href="/2015/03/16/test1/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-    <li>
-      <h2 class="post-list__post-title post-title"><a href="/2015/03/16/hello-world/" title="link to post.title">Hello World</a></h2>
-      <p class="excerpt">
-    
-      Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post$ hexo new &amp;quot;My New Pos
-    &hellip;
-      </p>
-      <div class="post-list__meta"><time datetime="2015-03-16T08:28:25.799Z" class="post-list__meta--date date">2015-03-16</time> &#8226; <span class="post-list__meta--tags tags">于&nbsp;</span><a class="btn-border-small" href="/2015/03/16/hello-world/">继续阅读</a></div>
-      <hr class="post-list__divider" />
-    </li>
-  
-    
-  </ol>
-
-
-
-</div>
+<section class="post-comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="http://kxlf.co/2015/03/22/DOM第0级事件模型/" data-title="DOM第0级事件模型" data-url="http://kxlf.co/2015/03/22/DOM第0级事件模型/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"mlongbo"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- 多说公共JS代码 end -->
+</section>
 
 
 
