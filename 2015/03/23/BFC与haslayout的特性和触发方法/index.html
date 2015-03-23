@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>DOM第2级事件模型 | KXLF</title>
+    <title>BFC与haslayout的特性和触发方法 | KXLF</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="上课的路上&amp;nbsp;&amp;nbsp;撑一把伞&lt;br /&gt;踏着被雨水淋湿的黄叶&lt;br /&gt;感受着入冬的雨雪">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="DOM第2级事件模型 | KXLF">
+    <meta name="twitter:title" content="BFC与haslayout的特性和触发方法 | KXLF">
     <meta name="twitter:description" content="上课的路上&amp;nbsp;&amp;nbsp;撑一把伞&lt;br /&gt;踏着被雨水淋湿的黄叶&lt;br /&gt;感受着入冬的雨雪"">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="DOM第2级事件模型 | KXLF">
+    <meta property="og:title" content="BFC与haslayout的特性和触发方法 | KXLF">
     <meta property="og:description" content="上课的路上&amp;nbsp;&amp;nbsp;撑一把伞&lt;br /&gt;踏着被雨水淋湿的黄叶&lt;br /&gt;感受着入冬的雨雪"">
 
   
@@ -43,7 +43,7 @@
     <link rel="alternate" type="application/rss+xml" title="KXLF" href="/atom.xml">
     
     
-    <link rel="canonical" href="http://kxlf.co/2015/03/22/DOM第2级事件模型/" />
+    <link rel="canonical" href="http://kxlf.co/2015/03/23/BFC与haslayout的特性和触发方法/" />
 
     
 </head>
@@ -152,49 +152,38 @@
 
   <header class="post-header">
     <div class="post-meta">
-      <time datetime="2015-03-22T12:13:46.000Z" class="post-list__meta--date date">2015-03-22</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/javascript/">javascript</a>
+      <time datetime="2015-03-23T09:03:04.000Z" class="post-list__meta--date date">2015-03-23</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/CSS/">CSS</a>
 </span>
       <!--<span class="post-meta__author author"><img src="{{author.image}}" alt="profile image for {{author.name}}" class="avatar post-meta__avatar" /> by {{author.name}}</span>-->
     </div>
-    <h1 class="post-title">DOM第2级事件模型</h1>
+    <h1 class="post-title">BFC与haslayout的特性和触发方法</h1>
   </header>
 
   <section class="post">
-    <h2 id="创建监听器">创建监听器</h2><ul>
-<li>调用元素上的addEventListener()方法。</li>
-<li>语法：addEventListener(eventType, listener, userCapture);</li>
-<li><p>参数eventType：要监听的事件类型。</p>
-<blockquote>
-<p>与DOM第0级事件模型中<strong>不带on前缀</strong>的事件名称相同，例如click、mouseover、keydown等。</p>
-</blockquote>
-</li>
-<li><p>参数listener：函数引用或内联函数，Event实例是传入这个函数的第一个参数。</p>
-<blockquote>
-<p>在一个元素上创建的多个处理器，可能会以随机顺序触发，标准并不保证事件的执行顺序。</p>
-</blockquote>
-</li>
+    <h2 id="1-BFC特性">1.BFC特性</h2><ul>
+<li>不与浮动元素重叠</li>
+<li>清除内部浮动</li>
+<li>解决垂直margin问题</li>
 </ul>
-<h2 id="事件传播">事件传播</h2><ul>
-<li>捕获阶段：事件首先从DOM树根部向下传播到目标元素。</li>
-<li>冒泡阶段：从目标元素向上传播到DOM树根部。</li>
-<li>将addEventListener方法中的useCapture设置为true，则建立捕获阶段监听器，反之创建冒泡阶段监听器。<blockquote>
-<p>捕获阶段中Event实例的target属性也始终指向引发事件的目标元素。</p>
-</blockquote>
-</li>
+<h2 id="2-BFC触发">2.BFC触发</h2><ul>
+<li>float：不为none</li>
+<li>overflow：auto / scroll / hidden</li>
+<li>display：table-cell / table-caption / inline-block</li>
+<li>position：relative / static</li>
+<li>*zoom：1（IE6 / IE7）</li>
 </ul>
-<h2 id="IE事件模型">IE事件模型</h2><ul>
-<li>IE不支持DOM第2级事件模型（IE8-）</li>
-<li>调用元素上的attchEvent()方法。</li>
-<li>语法：attchEvent(eventName, handler);</li>
-<li>eventName：要监听的事件类型。<blockquote>
-<p>不采用标准事件名称，而是采用DOM第0级事件中相应元素属性的名称，例如onclick、mouseover、onkeydown等。</p>
-</blockquote>
-</li>
-<li>handler：事件处理函数，Event实例必须通过window.event属性获取。</li>
+<h2 id="3-haslayout特性">3.haslayout特性</h2><ul>
+<li>不与浮动元素重叠</li>
+<li>清楚内部浮动</li>
+<li>解决垂直margin问题</li>
+<li>只有haslayout元素支持滤镜</li>
+<li>块级别的链接：hasLayout=false时只有文字覆盖区域才能响应，而hasLayout=true则整个块区域都可相应。</li>
 </ul>
-<hr>
-<p>书籍连接：<a href="http://book.douban.com/subject/10540684/" target="_blank" rel="external">《jQuery实战（第2版）》</a></p>
+<h2 id="4-haslayout触发">4.haslayout触发</h2><ul>
+<li>zoom:1</li>
+<li>height: 1%（Holly Hack）</li>
+</ul>
 
   </section>
 
@@ -203,7 +192,7 @@
 
 <section class="post-comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="http://kxlf.co/2015/03/22/DOM第2级事件模型/" data-title="DOM第2级事件模型" data-url="http://kxlf.co/2015/03/22/DOM第2级事件模型/"></div>
+  <div class="ds-thread" data-thread-key="http://kxlf.co/2015/03/23/BFC与haslayout的特性和触发方法/" data-title="BFC与haslayout的特性和触发方法" data-url="http://kxlf.co/2015/03/23/BFC与haslayout的特性和触发方法/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
   <script type="text/javascript">

@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>DOM第2级事件模型 | KXLF</title>
+    <title>jQuery基础 | KXLF</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="上课的路上&amp;nbsp;&amp;nbsp;撑一把伞&lt;br /&gt;踏着被雨水淋湿的黄叶&lt;br /&gt;感受着入冬的雨雪">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="DOM第2级事件模型 | KXLF">
+    <meta name="twitter:title" content="jQuery基础 | KXLF">
     <meta name="twitter:description" content="上课的路上&amp;nbsp;&amp;nbsp;撑一把伞&lt;br /&gt;踏着被雨水淋湿的黄叶&lt;br /&gt;感受着入冬的雨雪"">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="DOM第2级事件模型 | KXLF">
+    <meta property="og:title" content="jQuery基础 | KXLF">
     <meta property="og:description" content="上课的路上&amp;nbsp;&amp;nbsp;撑一把伞&lt;br /&gt;踏着被雨水淋湿的黄叶&lt;br /&gt;感受着入冬的雨雪"">
 
   
@@ -43,7 +43,7 @@
     <link rel="alternate" type="application/rss+xml" title="KXLF" href="/atom.xml">
     
     
-    <link rel="canonical" href="http://kxlf.co/2015/03/22/DOM第2级事件模型/" />
+    <link rel="canonical" href="http://kxlf.co/2015/03/23/jQuery基础/" />
 
     
 </head>
@@ -152,46 +152,103 @@
 
   <header class="post-header">
     <div class="post-meta">
-      <time datetime="2015-03-22T12:13:46.000Z" class="post-list__meta--date date">2015-03-22</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/javascript/">javascript</a>
+      <time datetime="2015-03-23T06:43:43.000Z" class="post-list__meta--date date">2015-03-23</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/jQuery/">jQuery</a>
 </span>
       <!--<span class="post-meta__author author"><img src="{{author.image}}" alt="profile image for {{author.name}}" class="avatar post-meta__avatar" /> by {{author.name}}</span>-->
     </div>
-    <h1 class="post-title">DOM第2级事件模型</h1>
+    <h1 class="post-title">jQuery基础</h1>
   </header>
 
   <section class="post">
-    <h2 id="创建监听器">创建监听器</h2><ul>
-<li>调用元素上的addEventListener()方法。</li>
-<li>语法：addEventListener(eventType, listener, userCapture);</li>
-<li><p>参数eventType：要监听的事件类型。</p>
-<blockquote>
-<p>与DOM第0级事件模型中<strong>不带on前缀</strong>的事件名称相同，例如click、mouseover、keydown等。</p>
-</blockquote>
+    <ul>
+<li>核心是从HTML页面上获取元素，并对他们进行操作。</li>
+<li>首要目标是确保在所有主要浏览器下都能流畅的运行代码。</li>
+<li>支持插件的机制，而且不难编写。</li>
+<li>$()是jQuery()函数的别名。</li>
+</ul>
+<h2 id="jQuery包装器（wrapper）">jQuery包装器（wrapper）</h2><ul>
+<li>$()函数返回的特殊JavaScript对象，它包含与选择器相匹配的DOM元素数组.</li>
+<li>这些元素按照在文档中的顺序排列。这个对象拥有大量预定义方法，用于操作这些元素集合。</li>
+<li>简单来说，就是包装收集到元素，并添加了扩展功能。</li>
+</ul>
+<h2 id="jQuery作用链">jQuery作用链</h2><ul>
+<li>包装器方法执行完毕后，会返回相同的一组元素，来为另一个操作做准备。例如，隐藏CSS类名为item的全部标签，并为他们添加新的CSS类名removed：<pre><code class="javascript">$(&quot;.item&quot;).hide().addClass(&quot;removed&quot;);
+</code></pre>
 </li>
-<li><p>参数listener：函数引用或内联函数，Event实例是传入这个函数的第一个参数。</p>
-<blockquote>
-<p>在一个元素上创建的多个处理器，可能会以随机顺序触发，标准并不保证事件的执行顺序。</p>
-</blockquote>
+<li><p>jQuery作用链可以无限延续，每个方法都作用在与最初选择器匹配的元素集合上。</p>
+</li>
+<li><p>包装集也可以使用普通数组的方式访问，以下两行代码的效果是相同的：</p>
+<pre><code class="javascript">$(&quot;#someElement&quot;).html(&quot;Hello!&quot;);
+$(&quot;#someElement&quot;)[0].innerHTML(&quot;Hello!&quot;);
+</code></pre>
+</li>
+<li>如果想匹配多个元素，并进行批量操作，jQuery可以直接对包装集进行操作，而普通数组只能遍历操作了。</li>
+</ul>
+<h2 id="实用函数">实用函数</h2><ul>
+<li>$()可以作为一些通用实用函数集的命名空间前缀。下面的两种用法效果相同，trim()是jQuery或者$命名空间下的一个函数：<pre><code class="javascript">var trimmed = $.trim(someString);
+var trimmed = jQuery.trim(someString);
+</code></pre>
 </li>
 </ul>
-<h2 id="事件传播">事件传播</h2><ul>
-<li>捕获阶段：事件首先从DOM树根部向下传播到目标元素。</li>
-<li>冒泡阶段：从目标元素向上传播到DOM树根部。</li>
-<li>将addEventListener方法中的useCapture设置为true，则建立捕获阶段监听器，反之创建冒泡阶段监听器。<blockquote>
-<p>捕获阶段中Event实例的target属性也始终指向引发事件的目标元素。</p>
-</blockquote>
+<h2 id="文档就绪处理器">文档就绪处理器</h2><ul>
+<li>整个页面主体加载完毕后再应用行为，传统方法是使用window实例的onload方法：<pre><code class="javascript">window.onload = function(){
+// 执行操作
+}
+</code></pre>
+</li>
+<li><p>浏览器会延迟执行onload，直到DOM树创建完毕、所有资源也加载完毕的时候。这就导致用户需要等待很长时间加载完成，然后才能使用丰富的页面行为。</p>
+</li>
+<li><p>jQuery提供的更好的方法是在DOM树加载完毕后（而不包括所有外部资源），立即执行脚本：</p>
+<pre><code class="javascript">// 标准语法
+jQuery(document).read(function(){
+   // 执行操作
+});
+</code></pre>
+<pre><code class="javascript">// 简写形式
+jQuery(function(){
+   // 执行操作
+});
+</code></pre>
+</li>
+<li><p>可以在一个页面中多次调用此函数，浏览器会按照他们的声明顺序依次调用。而window的onload机制只允许指定一个函数。</p>
 </li>
 </ul>
-<h2 id="IE事件模型">IE事件模型</h2><ul>
-<li>IE不支持DOM第2级事件模型（IE8-）</li>
-<li>调用元素上的attchEvent()方法。</li>
-<li>语法：attchEvent(eventName, handler);</li>
-<li>eventName：要监听的事件类型。<blockquote>
-<p>不采用标准事件名称，而是采用DOM第0级事件中相应元素属性的名称，例如onclick、mouseover、onkeydown等。</p>
-</blockquote>
+<h3 id="创建DOM元素">创建DOM元素</h3><ul>
+<li>示例：<pre><code class="javascript">$(function(){  
+   $(&quot;&lt;p&gt;Hi there!&lt;/p&gt;&quot;).insertAfter(&quot;#followMe&quot;);      
+});
+</code></pre>
 </li>
-<li>handler：事件处理函数，Event实例必须通过window.event属性获取。</li>
+</ul>
+<h3 id="扩展jQuery">扩展jQuery</h3><ul>
+<li>试图满足所有需求的库是不合理的，这可能会导致一大堆庞大的、臃肿的、包含很少可用功能的代码，这只会把事情搞砸。</li>
+<li>jQuery只包含大部分页面开发需要的功能，放置于核心库中。</li>
+<li>jQuery很容易通过附加功能来进行扩展。<br>示例：<pre><code class="javascript">// 禁用包装集中的元素
+$.fn.disable = function(){
+   return this.each(function(){
+        if(this.disabled == null){
+             this.disabled = true;
+        }
+   });
+}
+</code></pre>
+</li>
+<li>在函数内部，this关键字指向将要操作的DOM元素集合。</li>
+<li>在传入each()的迭代器函数内部，this是对当前遍历的特定DOM元素的引用。</li>
+<li>jQuery团队推荐了各种代码风格的完整列表，详细看<a href="http://contribute.jquery.org/style-guide/js/" target="_blank" rel="external">这里</a>。</li>
+</ul>
+<h3 id="jQuery与其他库共存">jQuery与其他库共存</h3><ul>
+<li>遵循最佳实践原则，应避免引入大量的标示符而污染全局命名空间。</li>
+<li>标示符jQuery和其别名$是全局命名空间引入的唯一变量。</li>
+<li>如果$符号与其他库产生冲突，则调用jQuery.noConflict()即可将$给其他库使用了。（比如Prototype库）。</li>
+</ul>
+<h2 id="小结">小结</h2><p>jQuery()有如下用途：</p>
+<ul>
+<li>通过包装器方法选择和包装将要操作的DOM元素</li>
+<li>为全局实用函数提供命名空间</li>
+<li>从HTML标记创建DOM元素</li>
+<li>创建在DOM就绪后执行的代码</li>
 </ul>
 <hr>
 <p>书籍连接：<a href="http://book.douban.com/subject/10540684/" target="_blank" rel="external">《jQuery实战（第2版）》</a></p>
@@ -203,7 +260,7 @@
 
 <section class="post-comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="http://kxlf.co/2015/03/22/DOM第2级事件模型/" data-title="DOM第2级事件模型" data-url="http://kxlf.co/2015/03/22/DOM第2级事件模型/"></div>
+  <div class="ds-thread" data-thread-key="http://kxlf.co/2015/03/23/jQuery基础/" data-title="jQuery基础" data-url="http://kxlf.co/2015/03/23/jQuery基础/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
   <script type="text/javascript">
