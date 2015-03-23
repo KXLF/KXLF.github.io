@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>发个文章测试一下 | KXLF</title>
+    <title>jQuery选择器 | KXLF</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="上课的路上&amp;nbsp;&amp;nbsp;撑一把伞&lt;br /&gt;踏着被雨水淋湿的黄叶&lt;br /&gt;感受着入冬的雨雪">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="发个文章测试一下 | KXLF">
+    <meta name="twitter:title" content="jQuery选择器 | KXLF">
     <meta name="twitter:description" content="上课的路上&amp;nbsp;&amp;nbsp;撑一把伞&lt;br /&gt;踏着被雨水淋湿的黄叶&lt;br /&gt;感受着入冬的雨雪"">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="发个文章测试一下 | KXLF">
+    <meta property="og:title" content="jQuery选择器 | KXLF">
     <meta property="og:description" content="上课的路上&amp;nbsp;&amp;nbsp;撑一把伞&lt;br /&gt;踏着被雨水淋湿的黄叶&lt;br /&gt;感受着入冬的雨雪"">
 
   
@@ -43,7 +43,7 @@
     <link rel="alternate" type="application/rss+xml" title="KXLF" href="/atom.xml">
     
     
-    <link rel="canonical" href="http://kxlf.co/2015/03/16/test1/" />
+    <link rel="canonical" href="http://kxlf.co/2015/03/23/jQuery选择器/" />
 
     
 </head>
@@ -152,17 +152,76 @@
 
   <header class="post-header">
     <div class="post-meta">
-      <time datetime="2015-03-16T12:13:06.000Z" class="post-list__meta--date date">2015-03-16</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
-  <a class="tag-link" href="/tags/TEST/">TEST</a>
+      <time datetime="2015-03-23T10:02:06.000Z" class="post-list__meta--date date">2015-03-23</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+  <a class="tag-link" href="/tags/jQuery/">jQuery</a>
 </span>
       <!--<span class="post-meta__author author"><img src="{{author.image}}" alt="profile image for {{author.name}}" class="avatar post-meta__avatar" /> by {{author.name}}</span>-->
     </div>
-    <h1 class="post-title">发个文章测试一下</h1>
+    <h1 class="post-title">jQuery选择器</h1>
   </header>
 
   <section class="post">
-    <p>锋后冷空气移动速度远较暖气团为快，它冲击暖气团并迫使产生强烈上升。而在高层，因暖气团移速大于冷空气，出现暖空气沿锋面下滑现象，由于这种锋面处于高空槽后或槽线附近，更加强了锋线附近的上升运动和高空锋区上的下沉运动。</p>
-<div><br><iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=28884238&auto=0&height=66"></iframe><br></div>
+    <h2 id="$()函数最常用的功能">$()函数最常用的功能</h2><ul>
+<li>使用选择器选择DOM元素</li>
+<li>创建新的DOM元素</li>
+</ul>
+<h2 id="控制上下文">控制上下文</h2><ul>
+<li>$()函数第一个参数是选择器，第二个参数是上下文。</li>
+<li>默认把DOM树的所有元素作为该选择器的上下文。</li>
+<li>上下文参数可以是DOM元素的引用，也可以是包含jQuery选择器的字符串，也可以是DOM元素包装集。</li>
+<li>调用某个$()函数的结果传递给另一个$()，即：<pre><code class="javascript">$($(&quot;.hide&quot;)).hide();
+</code></pre>
+</li>
+<li>将选择器的应用范围限制在DOM树指定部分：<pre><code class="javascript">$(selector,&#39;div#sampleDOM&#39;)
+</code></pre>
+</li>
+</ul>
+<h2 id="使用CSS选择器">使用CSS选择器</h2><ul>
+<li>jQuery不依赖CSS在浏览器的实现，即使浏览器没有正确的实现标准CSS选择器，jQuery也会遵循W3C标准的规则来正确的选择元素。</li>
+<li>jQuery允许使用逗号操作符将多个选择器合并成一个选择器。</li>
+</ul>
+<h2 id="使用子节点、容器和特性选择器">使用子节点、容器和特性选择器</h2><ul>
+<li><code>*</code>     匹配所有元素</li>
+<li><code>E</code>     匹配标签名称为E的所有元素</li>
+<li><code>E F</code>     匹配标签名称为F的所有元素，这些元素是E的子节点</li>
+<li><code>E&gt;F</code>     匹配标签名称为F的所有元素，这些元素是E的直接子节点</li>
+<li><code>E+F</code>     匹配标签名称为F的所有元素，这些元素是E后面的第一个兄弟节点</li>
+<li><code>E~F</code>     匹配标签名称为F的所有元素，这些元素是E后面的兄弟节点之一</li>
+<li><code>E.C</code>     匹配标签名称为E的所有元素，这些元素拥有CSS类名为C，如果省略E，则相当于*.C</li>
+<li><code>E#I</code>     匹配标签名称为E的所有元素，这些元素的ID特性值为I，如果省略E则相当于*#I</li>
+<li><code>E[A]</code>     匹配标签名称为E的所有元素，这些元素拥有特性A</li>
+<li><code>E[A=V]</code>     匹配标签名称为E的所有元素，这些元素的A特性值为V</li>
+<li><code>E[A^=V]</code>     匹配标签名称为E的所有元素，这些元素的A特性值以V开头</li>
+<li><code>E[A!=V]</code>     匹配标签名称为E的所有元素，这些元素的A特性值不等于V，或者不存在A特性</li>
+<li><code>E[A*=V]</code>     匹配标签名称为E的所有元素，这些元素的A特性值包含V</li>
+</ul>
+<h2 id="通过位置选择元素">通过位置选择元素</h2><ul>
+<li>使用冒号开头，例如p:even</li>
+<li>CSS规范中称为伪类，jQuery中称为过滤器，因为这些选择器是用来过滤另一个基础选择器的。</li>
+<li><code>:first</code>     匹配上下文中的第一个元素</li>
+<li><code>:last</code>     匹配上下文中的最后一个元素</li>
+<li><code>:first-child</code>     匹配上下文中第一个子节点</li>
+<li><code>:last-child</code>     匹配上下文中最后最后一个子节点<blockquote>
+<p><code>:first</code>与’:first-child’的区别：？？？</p>
+</blockquote>
+</li>
+<li><code>:only-child</code>     返回所有没有兄弟节点的元素</li>
+<li><code>:nth-child(n)</code>     返回上下文中第n个子节点</li>
+<li><code>nth-child( odd | even )</code>     匹配上下文中的奇数或偶数子节点</li>
+<li><code>nth-child(Xn+Y)</code>     匹配上下文中的由提供的公式计算出的子节点。如果Y是0，则可以省略。li:nth-child(3n)返回每个列表中能被3整除的列表项，而nth-child(5n+1)返回每个列表中所有能被5整除的列表项的下一个列表项<blockquote>
+<p>:nth-child过滤器从1开始计数（为了与CSS兼容）</p>
+</blockquote>
+</li>
+<li><code>:odd</code>     匹配上下文中的奇数元素</li>
+<li><code>:even</code>     匹配上下文中的偶数元素</li>
+<li><code>:eq(n)</code>     匹配第n个元素</li>
+<li><code>:lt(n)</code>     匹配第n个元素之前的元素（不包含第n个元素）</li>
+<li><code>:gt(n)</code>     匹配第n个元素之后的元素（不包含第n个元素）<blockquote>
+<p><code>:odd</code>与<code>:nth-child( odd )</code>的区别：？？？</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="使用CSS和自定义的jQuery过滤选择器">使用CSS和自定义的jQuery过滤选择器</h2>
   </section>
 
 </article>
@@ -170,7 +229,7 @@
 
 <section class="post-comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="http://kxlf.co/2015/03/16/test1/" data-title="发个文章测试一下" data-url="http://kxlf.co/2015/03/16/test1/"></div>
+  <div class="ds-thread" data-thread-key="http://kxlf.co/2015/03/23/jQuery选择器/" data-title="jQuery选择器" data-url="http://kxlf.co/2015/03/23/jQuery选择器/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
   <script type="text/javascript">
