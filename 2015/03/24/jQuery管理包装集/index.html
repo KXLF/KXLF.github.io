@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <title>jQuery选择器 | KXLF</title>
+    <title>jQuery管理包装集 | KXLF</title>
     <meta name="renderer" content="webkit">
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
@@ -15,11 +15,11 @@
     <meta name="description" content="上课的路上&amp;nbsp;&amp;nbsp;撑一把伞&lt;br /&gt;踏着被雨水淋湿的黄叶&lt;br /&gt;感受着入冬的雨雪">
 
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="jQuery选择器 | KXLF">
+    <meta name="twitter:title" content="jQuery管理包装集 | KXLF">
     <meta name="twitter:description" content="上课的路上&amp;nbsp;&amp;nbsp;撑一把伞&lt;br /&gt;踏着被雨水淋湿的黄叶&lt;br /&gt;感受着入冬的雨雪"">
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="jQuery选择器 | KXLF">
+    <meta property="og:title" content="jQuery管理包装集 | KXLF">
     <meta property="og:description" content="上课的路上&amp;nbsp;&amp;nbsp;撑一把伞&lt;br /&gt;踏着被雨水淋湿的黄叶&lt;br /&gt;感受着入冬的雨雪"">
 
   
@@ -41,7 +41,7 @@
     <meta name="generator" content="hexo" />
     
     
-    <link rel="canonical" href="http://kxlf.co/2015/03/23/jQuery选择器/" />
+    <link rel="canonical" href="http://kxlf.co/2015/03/24/jQuery管理包装集/" />
 
     
 </head>
@@ -143,120 +143,73 @@
 
   <header class="post-header">
     <div class="post-meta">
-      <time datetime="2015-03-23T10:02:06.000Z" class="post-list__meta--date date">2015-03-23</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
+      <time datetime="2015-03-24T13:27:59.000Z" class="post-list__meta--date date">2015-03-24</time> &#8226; <span class="post-meta__tags tags">于&nbsp;
   <a class="tag-link" href="/tags/jQuery/">jQuery</a>
 </span>
       <!--<span class="post-meta__author author"><img src="{{author.image}}" alt="profile image for {{author.name}}" class="avatar post-meta__avatar" /> by {{author.name}}</span>-->
     </div>
-    <h1 class="post-title">jQuery选择器</h1>
+    <h1 class="post-title">jQuery管理包装集</h1>
   </header>
 
   <section class="post">
-    <h2 id="$()函数最常用的功能">$()函数最常用的功能</h2><ul>
-<li>使用选择器选择DOM元素</li>
-<li>创建新的DOM元素</li>
+    <h2 id="确定包装集的大小">确定包装集的大小</h2><ul>
+<li>使用length属性</li>
+<li>使用size()方法</li>
 </ul>
-<h2 id="控制上下文">控制上下文</h2><ul>
-<li>$()函数第一个参数是选择器，第二个参数是上下文。</li>
-<li>默认把DOM树的所有元素作为该选择器的上下文。</li>
-<li>上下文参数可以是DOM元素的引用，也可以是包含jQuery选择器的字符串，也可以是DOM元素包装集。</li>
-<li>调用某个$()函数的结果传递给另一个$()，即：<pre><code class="javascript">$($(&quot;.hide&quot;)).hide();
-</code></pre>
-</li>
-<li>将选择器的应用范围限制在DOM树指定部分：<pre><code class="javascript">$(selector,&#39;div#sampleDOM&#39;)
-</code></pre>
-</li>
-</ul>
-<h2 id="使用CSS选择器">使用CSS选择器</h2><ul>
-<li>jQuery不依赖CSS在浏览器的实现，即使浏览器没有正确的实现标准CSS选择器，jQuery也会遵循W3C标准的规则来正确的选择元素。</li>
-<li>jQuery允许使用逗号操作符将多个选择器合并成一个选择器。</li>
-</ul>
-<h2 id="使用子节点、容器和特性选择器">使用子节点、容器和特性选择器</h2><ul>
-<li><code>*</code>     匹配所有元素</li>
-<li><code>E</code>     匹配标签名称为E的所有元素</li>
-<li><code>E F</code>     匹配标签名称为F的所有元素，这些元素是E的子节点</li>
-<li><code>E&gt;F</code>     匹配标签名称为F的所有元素，这些元素是E的直接子节点</li>
-<li><code>E+F</code>     匹配标签名称为F的所有元素，这些元素是E后面的第一个兄弟节点</li>
-<li><code>E~F</code>     匹配标签名称为F的所有元素，这些元素是E后面的兄弟节点之一</li>
-<li><code>E.C</code>     匹配标签名称为E的所有元素，这些元素拥有CSS类名为C，如果省略E，则相当于*.C</li>
-<li><code>E#I</code>     匹配标签名称为E的所有元素，这些元素的ID特性值为I，如果省略E则相当于*#I</li>
-<li><code>E[A]</code>     匹配标签名称为E的所有元素，这些元素拥有特性A</li>
-<li><code>E[A=V]</code>     匹配标签名称为E的所有元素，这些元素的A特性值为V</li>
-<li><code>E[A^=V]</code>     匹配标签名称为E的所有元素，这些元素的A特性值以V开头</li>
-<li><code>E[A!=V]</code>     匹配标签名称为E的所有元素，这些元素的A特性值不等于V，或者不存在A特性</li>
-<li><code>E[A*=V]</code>     匹配标签名称为E的所有元素，这些元素的A特性值包含V</li>
-</ul>
-<h2 id="通过位置选择元素">通过位置选择元素</h2><ul>
-<li>使用冒号开头，例如p:even</li>
-<li>CSS规范中称为伪类，jQuery中称为过滤器，因为这些选择器是用来过滤另一个基础选择器的。</li>
-<li><code>:first</code>     匹配上下文中的第一个元素</li>
-<li><code>:last</code>     匹配上下文中的最后一个元素</li>
-<li><code>:first-child</code>     匹配上下文中第一个子节点</li>
-<li><code>:last-child</code>     匹配上下文中最后最后一个子节点<blockquote>
-<p><code>:first</code>与’:first-child’的区别：？？？</p>
+<h2 id="从包装集中获取元素">从包装集中获取元素</h2><ul>
+<li>使用索引，例如$(‘img’)[0]</li>
+<li>使用get()方法，例如$(‘img’).get(0)<blockquote>
+<p>get()方法接受负值的下标作为参数，get(-1)返回包装集中的最后一个元素</p>
 </blockquote>
 </li>
-<li><code>:only-child</code>     返回所有没有兄弟节点的元素</li>
-<li><code>:nth-child(n)</code>     返回上下文中第n个子节点</li>
-<li><code>nth-child( odd | even )</code>     匹配上下文中的奇数或偶数子节点</li>
-<li><code>nth-child(Xn+Y)</code>     匹配上下文中的由提供的公式计算出的子节点。如果Y是0，则可以省略。li:nth-child(3n)返回每个列表中能被3整除的列表项，而nth-child(5n+1)返回每个列表中所有能被5整除的列表项的下一个列表项<blockquote>
-<p>:nth-child过滤器从1开始计数（为了与CSS兼容）</p>
-</blockquote>
-</li>
-<li><code>:odd</code>     匹配上下文中的奇数元素</li>
-<li><code>:even</code>     匹配上下文中的偶数元素</li>
-<li><code>:eq(n)</code>     匹配第n个元素</li>
-<li><code>:lt(n)</code>     匹配第n个元素之前的元素（不包含第n个元素）</li>
-<li><code>:gt(n)</code>     匹配第n个元素之后的元素（不包含第n个元素）<blockquote>
-<p><code>:odd</code>与<code>:nth-child( odd )</code>的区别：？？？</p>
-</blockquote>
-</li>
+<li>get()方法不指定参数，则返回元素数组，但更推荐使用toArray()方法</li>
+<li>使用索引、get()、toArray()方法都是返回DOM元素，如果想返回包含一个元素的包装集，可以使用下面的方法：<ul>
+<li>eq(index)</li>
+<li>first()</li>
+<li>last()</li>
+<li>$($(‘p’).get(0))</li>
 </ul>
-<h2 id="使用CSS和自定义的jQuery过滤选择器">使用CSS和自定义的jQuery过滤选择器</h2><ul>
-<li><code>:animated</code>    选择处于动画状态的元素</li>
-<li><code>:button</code>        选择按钮元素</li>
-<li><code>:checkbox</code>    选择复选框元素</li>
-<li><code>:checked</code>    选择处于选中状态的复选框或单选按钮</li>
-<li><code>:contains(&#39;x&#39;)</code>    选择包含文本x的元素</li>
-<li><code>:disabled</code>    选择处于禁用状态的元素</li>
-<li><code>:enabled</code>    选择处于启用状态的元素</li>
-<li><code>:file</code>        选择文件输入元素</li>
-<li><code>:has(selector)</code>    选择至少包含一个匹配指定选择器的元素的元素</li>
-<li><code>:header</code>        选择标题元素</li>
-<li><code>:hidden</code>        选择隐藏元素</li>
-<li><code>:image</code>        选择图片输入元素</li>
-<li><code>:input</code>        选择表单元素</li>
-<li><code>:not(select)</code>    选择不匹配指定选择器的元素</li>
-<li><code>:parent</code>        选择有子节点的元素，空元素除外</li>
-<li><code>:password</code>    选择口令元素</li>
-<li><code>:radio</code>        选择单选框元素</li>
-<li><code>:reset</code>        选择重置按钮元素</li>
-<li><code>:selected</code>    选择列表中处于选中状态的<option>元素</option></li>
-<li><code>:submit</code>        选择提交按钮元素</li>
-<li><code>:text</code>        选择文本输入框元素</li>
-<li><code>:visable</code>    选择可见的元素</li>
-</ul>
-<h2 id="创建新元素">创建新元素</h2><ul>
-<li>以下三种写法是等价的，但建议使用符合标准的标记<pre><code class="javascript">$(&quot;&lt;div&gt;&quot;);
-$(&quot;&lt;div&gt;&lt;/div&gt;&quot;);
-$(&quot;&lt;/div&gt;&quot;);
-</code></pre>
 </li>
-<li>可以传递第二个参数到创建元素的$()方法中，用来指定特性和特性值，这个参数是一个JavaScript对象，他的属性作为特性的名称，相应的属性值作为特性值。例如：<pre><code class="javascript">$(&#39;&lt;img&gt;&#39;,
-  {
-      src: &#39;img/aaa.jpg&#39;,
-      alt: &#39;产品图片&#39;,
-      click: function(){
-          alert($(this).attr(&#39;alt&#39;));
-      },
-      css: {
-          cursor: &#39;pointer&#39;,
-          border: &#39;1px solid black&#39;
-      }
-  }
-)
-.appendTo(&#39;body&#39;);
+<li><p>可以使用indox(element)获取下标，参数element可以是元素的引用，也可以是元素选择器。如果省略参数则返回第一个元素在同级节点中的下标，找不到则返回-1。</p>
+<pre><code class="javascript">  // 获取id为findMe的图片，在整个页面图片集合中的下标
+  var n = $(&#39;img&#39;).index($(&#39;img#findMe&#39;)[0]);
+
+  // 获取第一个&lt;img&gt;元素在其父节点里的下标
+  var nn = $(&#39;img&#39;).index();
 </code></pre>
+<h2 id="分解元素包装集">分解元素包装集</h2></li>
+<li><p>添加集合</p>
+<ul>
+<li>add(expression, context)</li>
+<li>返回包装集副本，并向其中添加由expression指定的元素</li>
+<li>参数expression可以是选择器、元素、数组，还可以是包含HTML标记的字符串，来添加新建的元素</li>
+<li>参数context可以是选择器、元素、数组、jQuery</li>
+</ul>
+</li>
+<li><p>删除集合</p>
+<ul>
+<li>not(expression)</li>
+<li>返回包装集的副本，从中删除匹配的元素。</li>
+<li>参数expression可以是选择器、元素、数组、函数</li>
+<li>如果传递的是函数，会为包装集中的每个元素调用此函数，this指当前元素，并删除返回值为true的元素</li>
+<li>filter(expression)</li>
+<li>创建包装集的副本，并从中删除与expression不匹配的元素集合</li>
+<li>参数expression可以是选择器、元素、数组、函数</li>
+</ul>
+</li>
+<li><p>获取包装集的子集</p>
+<ul>
+<li>slice(begin, end)</li>
+<li>创建并返回新包装集，其中包含匹配集中的连续部分</li>
+<li>参数begin、end，为元素的开始和结束位置数字</li>
+<li>has(test)</li>
+<li>创建并返回新包装集，此包装集只包含原始包装集中，子节点匹配test表达式的元素</li>
+</ul>
+</li>
+<li>装换包装集中的元素<ul>
+<li>map(callback)</li>
+<li>为包装集中的每个元素调用回调函数，并将返回值收集到jQuery对象实例中</li>
+</ul>
 </li>
 </ul>
 
@@ -267,7 +220,7 @@ $(&quot;&lt;/div&gt;&quot;);
 
 <section class="post-comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="http://kxlf.co/2015/03/23/jQuery选择器/" data-title="jQuery选择器" data-url="http://kxlf.co/2015/03/23/jQuery选择器/"></div>
+  <div class="ds-thread" data-thread-key="http://kxlf.co/2015/03/24/jQuery管理包装集/" data-title="jQuery管理包装集" data-url="http://kxlf.co/2015/03/24/jQuery管理包装集/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
   <script type="text/javascript">
