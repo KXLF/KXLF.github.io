@@ -219,12 +219,19 @@ var duoshuoQuery = {short_name:"kxlf"};
 
 $(function(){
 
-$("#youkuV").attr("width",$(".post-container").width()-10).attr("height",$("#youkuV").attr("width") * 0.60482846);
+    var resizeVideo = function(){
+        $("#youkuV").attr("width",$(".post-container").width()-10).attr("height",$("#youkuV").attr("width") * 0.60482846);
+    }
 
-window.onresize = function() {
-                            $("#youkuV").attr("width",$(".post-container").width()-10).attr("height",$("#youkuV").attr("width") * 0.60482846);
-                        }
+    resizeVideo();
 
+    window.onresize = function() {
+        resizeVideo();
+    }
+
+    $(document).ready(function($) {
+        resizeVideo();
+    });
 });
 
 </script>
